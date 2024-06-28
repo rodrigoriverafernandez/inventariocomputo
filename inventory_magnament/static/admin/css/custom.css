@@ -1,0 +1,37 @@
+/* Personalizar el encabezado */
+#header {
+    background: #343a40;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header h1 {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+}
+
+#header img {
+    margin-right: 10px;
+}
+
+/* Personalizar el pie de página */
+#footer {
+    background: #343a40;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+#footer a {
+    color: #17a2b8;
+}
+
+/* Personalizar el contenido principal */
+.dashboard-title,
+.module h2 {
+    color: #343a40;
+}

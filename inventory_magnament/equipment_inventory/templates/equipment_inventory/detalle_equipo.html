@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle del Equipo{% endblock %}
+{% block page_title %}Detalle del Equipo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Detalle del Equipo</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Número de Serie</th>
+                    <td>{{ equipo.num_serie }}</td>
+                </tr>
+                <tr>
+                    <th>Número de Inventario</th>
+                    <td>{{ equipo.num_inventario }}</td>
+                </tr>
+                <tr>
+                    <th>Número de Activo</th>
+                    <td>{{ equipo.num_activo }}</td>
+                </tr>
+                <tr>
+                    <th>Marca</th>
+                    <td>{{ equipo.marca }}</td>
+                </tr>
+                <tr>
+                    <th>Modelo</th>
+                    <td>{{ equipo.modelo }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo</th>
+                    <td>{{ equipo.tipo }}</td>
+                </tr>
+                <tr>
+                    <th>Especificaciones</th>
+                    <td>{{ equipo.especificaciones }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Adquisición</th>
+                    <td>{{ equipo.fecha_adquisicion }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ equipo.estado }}</td>
+                </tr>
+                <tr>
+                    <th>IP</th>
+                    <td>{{ equipo.ip }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre del Equipo</th>
+                    <td>{{ equipo.nombre_equipo }}</td>
+                </tr>
+                <tr>
+                    <th>Asignado a</th>
+                    <td>
+                        {% if asignacion %}
+                            {{ asignacion.empleado.nombre }} (RPE: {{ asignacion.empleado.rpe }})
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Regresar al Menú Principal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

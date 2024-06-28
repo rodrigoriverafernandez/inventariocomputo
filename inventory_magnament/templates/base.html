@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Inventory Management{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'admin/img/favicon.ico' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+    <style>
+        .navbar-nav .logout-form {
+            display: inline;
+        }
+        .navbar-nav .logout-form .nav-link {
+            padding: 0.5rem 1rem;
+            color: #fff;
+        }
+        .navbar-nav .logout-form .nav-link:hover {
+            color: #ccc;
+        }
+        .navbar-brand .logo {
+            float: left;
+            margin-right: 10px;
+        }
+        .navbar-brand .brand-text {
+            float: left;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-menu {
+            background-color: #343a40;
+        }
+        .dropdown-item {
+            color: #fff !important;
+        }
+        .dropdown-item:hover {
+            color: #343a40 !important;
+            background-color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'homepage' %}">
+            <img src="{% static 'admin/img/logo2.png' %}" alt="Logo" width="50" height="50" class="d-inline-block align-top logo">
+            <div class="d-inline-block align-middle brand-text">
+                <div>Inventory Management</div>
+                <div class="subtitles">Gerencia de Abastecimientos</div>
+                <div class="subtitles">Auxiliaria General</div>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_empleados' %}">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_equipos' %}">Inventario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_asignaciones' %}">Asignaciones</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="accionesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Acciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="accionesDropdown">
+                        <a class="dropdown-item" href="{% url 'crear_empleado' %}">Agregar Empleado</a>
+                        <a class="dropdown-item" href="{% url 'upload_empleados' %}">Subir Empleados CSV</a>
+                        <a class="dropdown-item" href="{% url 'upload_equipos' %}">Subir Equipos CSV</a>
+                    </div>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" class="logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1>{% block page_title %}Inventory Management{% endblock %}</h1>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="bg-dark text-white mt-5 p-4 text-center">
+        <p>&copy; 2024 Inventory Management. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

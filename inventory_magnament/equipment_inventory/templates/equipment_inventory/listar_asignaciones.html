@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Asignaciones{% endblock %}
+{% block page_title %}Lista de Asignaciones{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Asignaciones</h2>
+            <form method="get" action="">
+                <input type="text" name="q" placeholder="Buscar asignaciones..." value="{{ request.GET.q }}">
+                <button type="submit">Buscar</button>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Empleado</th>
+                        <th>RPE</th>
+                        <th>Equipo</th>
+                        <th>Fecha de Asignación</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asignacion in asignaciones %}
+                        <tr>
+                            <td>{{ asignacion.empleado.nombre }}</td>
+                            <td>{{ asignacion.empleado.rpe }}</td>
+                            <td>{{ asignacion.equipo.num_serie }}</td>
+                            <td>{{ asignacion.fecha_asignacion }}</td>
+                            <td>{{ asignacion.detalles }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if asignaciones.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ asignaciones.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ asignaciones.number }} of {{ asignaciones.paginator.num_pages }}.
+                    </span>
+
+                    {% if asignaciones.has_next %}
+                        <a href="?page={{ asignaciones.next_page_number }}">next</a>
+                        <a href="?page={{ asignaciones.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Regresar al Menú Principal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

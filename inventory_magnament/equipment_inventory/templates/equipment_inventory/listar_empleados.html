@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Empleados{% endblock %}
+{% block page_title %}Lista de Empleados{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2>Empleados</h2>
+    </div>
+    <form method="GET" action="{% url 'listar_empleados' %}">
+        <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o RPE">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>RPE</th>
+                <th>Nombre</th>
+                <th>Adscripción</th>
+                <th>Ubicación</th>
+                <th>Email</th>
+                <th>Nombramiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td>
+                    {% if empleado.rpe %}
+                        <a href="{% url 'detalle_empleado' empleado.rpe %}">{{ empleado.rpe }}</a>
+                    {% else %}
+                        Sin RPE
+                    {% endif %}
+                </td>
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.adscripcion }}</td>
+                <td>{{ empleado.ubicacion }}</td>
+                <td>{{ empleado.email }}</td>
+                <td>{{ empleado.nombramiento }}</td>
+                <td>
+                    {% if empleado.rpe %}
+                        <a href="{% url 'detalle_empleado' empleado.rpe %}" class="btn btn-info btn-sm">Ver</a>
+                    {% else %}
+                        <span class="text-muted">No disponible</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if empleados.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ empleados.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ empleados.number }} of {{ empleados.paginator.num_pages }}.
+            </span>
+
+            {% if empleados.has_next %}
+                <a href="?page={{ empleados.next_page_number }}">next</a>
+                <a href="?page={{ empleados.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Regresar al Menú Principal</a>
+</div>
+{% endblock %}

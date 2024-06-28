@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle del Empleado{% endblock %}
+{% block page_title %}Detalle del Empleado{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Detalle del Empleado</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>RPE</th>
+                    <td>{{ empleado.rpe }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ empleado.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Adscripción</th>
+                    <td>{{ empleado.adscripcion }}</td>
+                </tr>
+                <tr>
+                    <th>Ubicación</th>
+                    <td>{{ empleado.ubicacion }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ empleado.email }}</td>
+                </tr>
+                <tr>
+                    <th>Nombramiento</th>
+                    <td>{{ empleado.nombramiento }}</td>
+                </tr>
+            </table>
+            <h3>Equipos Asignados</h3>
+            {% if asignaciones %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Número de Serie</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Tipo</th>
+                            <th>Fecha de Asignación</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asignacion in asignaciones %}
+                            <tr>
+                                <td>{{ asignacion.equipo.num_serie }}</td>
+                                <td>{{ asignacion.equipo.marca }}</td>
+                                <td>{{ asignacion.equipo.modelo }}</td>
+                                <td>{{ asignacion.equipo.tipo }}</td>
+                                <td>{{ asignacion.fecha_asignacion }}</td>
+                                <td>{{ asignacion.detalles }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay equipos asignados.</p>
+            {% endif %}
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Regresar al Menú Principal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

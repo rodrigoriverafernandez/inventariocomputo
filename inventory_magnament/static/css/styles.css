@@ -1,0 +1,54 @@
+/* static/css/styles.css */
+
+/* Estilos personalizados aquí */
+body {
+    padding-top: 56px;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+    width: 50px; /* Ajusta el ancho del logo */
+    height: 50px; /* Ajusta la altura del logo */
+}
+
+.navbar-brand .d-inline-block.align-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navbar-brand .subtitles {
+    font-size: 0.8rem;
+    color: #cccccc;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #cccccc;
+}
+
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+
+.carousel-image {
+    width: 800px;
+    height: 200PX;
+    object-fit: cover; /* Opcional: para ajustar la imagen dentro del contenedor */
+}

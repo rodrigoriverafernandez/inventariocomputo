@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Equipos{% endblock %}
+{% block page_title %}Lista de Equipos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Equipos</h2>
+            <form method="get" action="">
+                <input type="text" name="q" placeholder="Buscar equipos..." value="{{ request.GET.q }}">
+                <button type="submit">Buscar</button>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Número de Serie</th>
+                        <th>Número de Inventario</th>
+                        <th>Número de Activo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Tipo</th>
+                        <!--<th>Especificaciones</th>-->
+                        <th>Fecha de Adquisición</th>
+                        <th>Estado</th>
+                        <th>IP</th>
+                        <th>Nombre del Equipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipo in equipos %}
+                        <tr>
+                            <td><a href="{% url 'detalle_equipo' equipo.num_serie %}">{{ equipo.num_serie }}</a></td>
+                            <td>{{ equipo.num_inventario }}</td>
+                            <td>{{ equipo.num_activo }}</td>
+                            <td>{{ equipo.marca }}</td>
+                            <td>{{ equipo.modelo }}</td>
+                            <td>{{ equipo.tipo }}</td>
+                            <!--<td>{{ equipo.especificaciones }}</td>-->
+                            <td>{{ equipo.fecha_adquisicion }}</td>
+                            <td>{{ equipo.estado }}</td>
+                            <td>{{ equipo.ip }}</td>
+                            <td>{{ equipo.nombre_equipo }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if equipos.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ equipos.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ equipos.number }} of {{ equipos.paginator.num_pages }}.
+                    </span>
+
+                    {% if equipos.has_next %}
+                        <a href="?page={{ equipos.next_page_number }}">next</a>
+                        <a href="?page={{ equipos.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Regresar al Menú Principal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

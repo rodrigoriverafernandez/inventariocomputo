@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Equipo{% endblock %}
+{% block page_title %}Agregar Equipo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Agregar Equipo</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
