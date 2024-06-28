@@ -1,0 +1,33 @@
+# Entorno virtual
+venv/
+env/
+
+# Archivos de configuración
+*.env
+*.ini
+*.cfg
+
+# Archivos compilados de Python
+*.pyc
+__pycache__/
+
+# Configuración del entorno IDE
+.idea/
+.vscode/
+
+/staticfiles/
+/media/
+
+# Archivos de base de datos
+*.sqlite3
+db.sqlite3
+
+# Archivos de registro
+*.log
+
+# Archivos de migración
+*/migrations/*
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
